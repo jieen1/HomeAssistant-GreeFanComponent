@@ -6,17 +6,16 @@ from homeassistant.components.fan import (
     FanEntity,
     FanEntityFeature
 )
-from homeassistant.components.gree import DOMAIN, COORDINATORS, DISPATCHERS
-from homeassistant.components.gree.bridge import DeviceDataUpdateCoordinator
-from homeassistant.components.gree.const import DISPATCH_DEVICE_DISCOVERED
-from homeassistant.components.gree.entity import GreeEntity
 from homeassistant.config_entries import ConfigEntry
 from homeassistant.core import HomeAssistant, callback
 from homeassistant.helpers.dispatcher import async_dispatcher_connect
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
+from homeassistant.helpers.update_coordinator import CoordinatorEntity
 from homeassistant.util.percentage import ranged_value_to_percentage, int_states_in_range, percentage_to_ranged_value
 
-from .constant import OSCILLATING_360, OSCILLATING_100, OSCILLATING_60, NO_OSCILLATING
+from .bridge import DeviceDataUpdateCoordinator
+from .constant import OSCILLATING_360, OSCILLATING_100, OSCILLATING_60, NO_OSCILLATING, DOMAIN, COORDINATORS, \
+    DISPATCHERS, DISPATCH_DEVICE_DISCOVERED
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -54,7 +53,7 @@ async def async_setup_entry(
     )
 
 
-class GreeFanEntity(FanEntity, GreeEntity):
+class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
     _attr_supported_features = FanEntityFeature.SET_SPEED | FanEntityFeature.PRESET_MODE | FanEntityFeature.DIRECTION
 
     def __init__(self, coordinator: DeviceDataUpdateCoordinator, max_step=12) -> None:
