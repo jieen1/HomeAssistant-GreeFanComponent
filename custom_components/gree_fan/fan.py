@@ -50,7 +50,7 @@ DEFAULT_TARGET_TEMP_STEP = 1
 # update() interval
 SCAN_INTERVAL = timedelta(seconds=60)
 
-FAN_MODES = ['Normal', 'Sleep']
+FAN_MODES = ['Normal', 'Sleep', 'Other1', 'Other2']
 SWING_MODES = ['Default', '60 degree', '100 degree', '360 degree']
 
 GCM_IV = b'\x54\x40\x78\x44\x49\x67\x5a\x51\x6c\x5e\x63\x13'
