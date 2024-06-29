@@ -134,6 +134,7 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
     def preset_mode(self) -> str | None:
         # 摇头方式
         swing = self.coordinator.device.horizontal_swing
+        _LOGGER.info("get preset mode for device %s, value: %s", self._name, swing)
         return PRESET_MODES[swing]
 
     async def async_set_preset_mode(self, preset_mode: str) -> None:
@@ -141,6 +142,7 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         if preset_mode is None:
             return
         preset_modes_index = PRESET_MODES.index(preset_mode)
+        _LOGGER.info("current preset mode: %s, new preset mode: %s", self.preset_mode, preset_modes_index)
         self.coordinator.device.horizontal_swing = preset_modes_index
         await self.coordinator.push_state_update()
         self.async_write_ha_state()
