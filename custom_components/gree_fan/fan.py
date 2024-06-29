@@ -4,6 +4,7 @@ import base64
 import logging
 import math
 import socket
+from typing import Any
 
 import homeassistant.helpers.config_validation as cv
 import voluptuous as vol
@@ -439,7 +440,10 @@ class GreeFan(FanEntity):
             self.SyncState({'WdSpd': fan})
             self.schedule_update_ha_state()
 
-    def turn_on(self):
+    def turn_on(self,
+                percentage: int | None = None,
+                preset_mode: str | None = None,
+                **kwargs: Any, ):
         _LOGGER.info('turn_on(): ')
         # Turn on.
         c = {'Pow': 1}
