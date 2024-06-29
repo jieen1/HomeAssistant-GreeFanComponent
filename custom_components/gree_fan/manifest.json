@@ -1,9 +1,0 @@
-{
-  "domain": "gree",
-  "name": "Gree Fan",
-  "version": "1.0.0",
-  "documentation": "https://github.com/jieen1/HomeAssistant-GreeFanComponent",
-  "dependencies": [],
-  "codeowners": ["@jieen1"],
-  "requirements": ["pycryptodome"]
-}

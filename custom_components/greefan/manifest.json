@@ -1,0 +1,19 @@
+{
+  "domain": "gree",
+  "name": "Gree Fan",
+  "version": "1.0.0",
+  "documentation": "https://github.com/jieen1/HomeAssistant-GreeFanComponent",
+  "dependencies": [
+    "network"
+  ],
+  "codeowners": [
+    "@jieen1"
+  ],
+  "config_flow": true,
+  "requirements": [
+    "greeclimate==1.4.1"
+  ],
+  "loggers": [
+    "greefan"
+  ]
+}
