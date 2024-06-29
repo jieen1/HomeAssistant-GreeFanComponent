@@ -121,6 +121,8 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         return int_states_in_range(self._step_range)
 
     def set_percentage(self, percentage: int) -> None:
+        if percentage is None:
+            return
         speed = percentage
         if self._step_range:
             speed = math.ceil(percentage_to_ranged_value(self._step_range, percentage))
@@ -135,6 +137,8 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         return PRESET_MODES[swing]
 
     def set_preset_mode(self, preset_mode: str) -> None:
+        if preset_mode is None:
+            return
         preset_modes_index = PRESET_MODES.index(preset_mode)
         self.coordinator.device.horizontal_swing = preset_modes_index
         self.coordinator.push_state_update()
@@ -145,6 +149,8 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         return PRESET_MODES
 
     def set_direction(self, direction: str) -> None:
+        if direction is None or direction == '':
+            return
         mode = 0
         if 'forward' != direction:
             mode = 2
