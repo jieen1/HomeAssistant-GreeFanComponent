@@ -120,7 +120,7 @@ class GreeFanEntity(FanEntity, GreeEntity):
         if self._step_range:
             speed = math.ceil(percentage_to_ranged_value(self._step_range, percentage))
         self.coordinator.device.fan_speed = speed
-        await self.coordinator.push_state_update()
+        self.coordinator.push_state_update()
         self.async_write_ha_state()
 
     @property
@@ -132,7 +132,7 @@ class GreeFanEntity(FanEntity, GreeEntity):
     def set_preset_mode(self, preset_mode: str) -> None:
         preset_modes_index = PRESET_MODES.index(preset_mode)
         self.coordinator.device.horizontal_swing = preset_modes_index
-        await self.coordinator.push_state_update()
+        self.coordinator.push_state_update()
         self.async_write_ha_state()
 
     @property
@@ -144,7 +144,7 @@ class GreeFanEntity(FanEntity, GreeEntity):
         if 'forward' != direction:
             mode = 2
         self.coordinator.device.mode = mode
-        await self.coordinator.push_state_update()
+        self.coordinator.push_state_update()
         self.async_write_ha_state()
 
     @property
