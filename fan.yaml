@@ -1,0 +1,10 @@
+- platform: gree_fan
+  # required settings:
+  name: gree_fan fan
+  host: <ip of your fan>
+  mac: <mac address of your fan>
+  # optional settings:
+  port: 7000
+  timeout: 10
+  encryption_key: <encryption key of your fan>
+  uid: <uid of your fan>
