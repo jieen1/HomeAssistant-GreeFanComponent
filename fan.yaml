@@ -1,6 +1,6 @@
-- platform: gree_fan
+- platform: gree
   # required settings:
-  name: gree_fan fan
+  name: gree fan
   host: <ip of your fan>
   mac: <mac address of your fan>
   # optional settings:
