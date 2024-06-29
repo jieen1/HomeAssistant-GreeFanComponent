@@ -393,13 +393,13 @@ class GreeFan(FanEntity):
         return self._swing_modes
 
     @property
-    def fan_mode(self):
+    def preset_mode(self):
         _LOGGER.info('fan_mode(): ' + str(self._fan_mode))
         # Return the fan mode.
         return self._fan_mode
 
     @property
-    def fan_modes(self):
+    def preset_modes(self):
         _LOGGER.info('fan_list(): ' + str(self._fan_modes))
         # Return the list of available fan modes.
         return self._fan_modes
@@ -424,7 +424,7 @@ class GreeFan(FanEntity):
             self.SyncState({'SwingLfRig': self._swing_modes.index(swing_mode)})
             self.schedule_update_ha_state()
 
-    def set_fan_mode(self, fan):
+    def set_preset_mode(self, fan):
         _LOGGER.info('set_fan_mode(): ' + str(fan))
         # Set the fan mode.
         if not (self._acOptions['Pow'] == 0):
