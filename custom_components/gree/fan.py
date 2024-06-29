@@ -1,6 +1,7 @@
 import logging
 import math
 from enum import unique, IntEnum
+from typing import Any
 
 from homeassistant.components.fan import (
     FanEntity,
@@ -74,13 +75,18 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         """Return a unique id for the device."""
         return self._mac
 
-    async def async_turn_on(self) -> None:
+    async def async_turn_on(self,
+                            percentage: int | None = None,
+                            preset_mode: str | None = None,
+                            **kwargs: Any) -> None:
         """Turn on the device."""
         _LOGGER.debug("Turning on fan for device %s", self._name)
 
         self.coordinator.device.power = True
         await self.coordinator.push_state_update()
         self.async_write_ha_state()
+        await self.async_set_percentage(percentage)
+        await self.async_set_preset_mode(preset_mode)
 
     async def async_turn_off(self) -> None:
         """Turn off the device."""
