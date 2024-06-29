@@ -8,9 +8,9 @@ from homeassistant.const import Platform
 from homeassistant.core import HomeAssistant
 from homeassistant.helpers.event import async_track_time_interval
 
-from custom_components.greefan.bridge import DiscoveryService
-from custom_components.greefan.constant import DOMAIN, DATA_DISCOVERY_SERVICE, DISPATCHERS, DATA_DISCOVERY_INTERVAL, \
-    DISCOVERY_SCAN_INTERVAL, COORDINATORS
+from .bridge import DiscoveryService
+from .constant import DOMAIN, DATA_DISCOVERY_SERVICE, DISPATCHERS, DATA_DISCOVERY_INTERVAL, DISCOVERY_SCAN_INTERVAL, \
+    COORDINATORS
 
 _LOGGER = logging.getLogger(__name__)
 
