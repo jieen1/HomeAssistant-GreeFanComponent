@@ -1,7 +1,6 @@
 """Config flow for Gree."""
 from greeclimate.discovery import Discovery
-from homeassistant.components.gree import DOMAIN
-from homeassistant.components.gree.const import DISCOVERY_TIMEOUT
+from .constant import DISCOVERY_TIMEOUT, DOMAIN
 
 from homeassistant.components.network import async_get_ipv4_broadcast_addresses
 from homeassistant.core import HomeAssistant

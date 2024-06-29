@@ -12,8 +12,7 @@ from homeassistant.core import HomeAssistant
 from homeassistant.helpers.dispatcher import async_dispatcher_send
 from homeassistant.helpers.update_coordinator import DataUpdateCoordinator, UpdateFailed
 
-from custom_components.greefan import DOMAIN
-from custom_components.greefan.constant import MAX_ERRORS, DISCOVERY_TIMEOUT, COORDINATORS, DISPATCH_DEVICE_DISCOVERED
+from .constant import DOMAIN, MAX_ERRORS, DISCOVERY_TIMEOUT, COORDINATORS, DISPATCH_DEVICE_DISCOVERED
 
 _LOGGER = logging.getLogger(__name__)
 
