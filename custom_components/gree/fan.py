@@ -137,6 +137,7 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         return PRESET_MODES[swing]
 
     async def async_set_preset_mode(self, preset_mode: str) -> None:
+        _LOGGER.info("set preset mode for device %s, value: %s", self._name, preset_mode)
         if preset_mode is None:
             return
         preset_modes_index = PRESET_MODES.index(preset_mode)
