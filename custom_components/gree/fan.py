@@ -120,14 +120,14 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
             return super().speed_count
         return int_states_in_range(self._step_range)
 
-    def set_percentage(self, percentage: int) -> None:
+    async def async_set_percentage(self, percentage: int) -> None:
         if percentage is None:
             return
         speed = percentage
         if self._step_range:
             speed = math.ceil(percentage_to_ranged_value(self._step_range, percentage))
         self.coordinator.device.fan_speed = speed
-        self.coordinator.push_state_update()
+        await self.coordinator.push_state_update()
         self.async_write_ha_state()
 
     @property
@@ -136,26 +136,26 @@ class GreeFanEntity(FanEntity, CoordinatorEntity[DeviceDataUpdateCoordinator]):
         swing = self.coordinator.device.horizontal_swing
         return PRESET_MODES[swing]
 
-    def set_preset_mode(self, preset_mode: str) -> None:
+    async def async_set_preset_mode(self, preset_mode: str) -> None:
         if preset_mode is None:
             return
         preset_modes_index = PRESET_MODES.index(preset_mode)
         self.coordinator.device.horizontal_swing = preset_modes_index
-        self.coordinator.push_state_update()
+        await self.coordinator.push_state_update()
         self.async_write_ha_state()
 
     @property
     def preset_modes(self) -> list[str] | None:
         return PRESET_MODES
 
-    def set_direction(self, direction: str) -> None:
+    async def async_set_direction(self, direction: str) -> None:
         if direction is None or direction == '':
             return
         mode = 0
         if 'forward' != direction:
             mode = 2
         self.coordinator.device.mode = mode
-        self.coordinator.push_state_update()
+        await self.coordinator.push_state_update()
         self.async_write_ha_state()
 
     @property
